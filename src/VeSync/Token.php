@@ -19,12 +19,18 @@ class Token
     /**
      * @var string
      */
+    protected $isAway;
+
+    /**
+     * @var string
+     */
     protected $secret;
 
-    public function __construct(string $accountId, string $token, string $secret = null)
+    public function __construct(string $accountId, string $token, bool $isAway, string $secret = null)
     {
         $this->accountId = $accountId;
         $this->token = $token;
+        $this->isAway = $isAway;
         $this->secret = $secret;
     }
 
@@ -36,6 +42,15 @@ class Token
     public function getToken(): string
     {
         return $this->token;
+    }
+
+    public function isAway(bool $isAway = null): bool
+    {
+        if ($isAway !== null) {
+            $this->isAway = $isAway;
+        }
+
+        return $this->isAway;
     }
 
     public function getSecret(): string
@@ -53,12 +68,13 @@ class Token
         return [
             'accountId' => $this->getAccountId(),
             'token' => $this->getToken(),
+            'isAway' => $this->isAway(),
             'secret' => $this->getSecret(),
         ];
     }
 
     public static function fromArray(array $data): Token
     {
-        return new Token($data['accountId'], $data['token'], $data['secret']);
+        return new Token($data['accountId'], $data['token'], $data['isAway'], $data['secret']);
     }
 }

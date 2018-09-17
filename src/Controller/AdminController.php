@@ -29,7 +29,14 @@ class AdminController
             return new JsonResponse(['error' => ['message' => 'Invalid VeSync credentials.']]);
         }
 
-        $token->setSecret(sha1(uniqid() . random_bytes(20)));
+        // Keep the old secret when refreshing VeSync token.
+        try {
+            $oldToken = $database->retrieveToken($token->getAccountId());
+            $token->setSecret($oldToken->getSecret());
+        } catch (DomainException $e) {
+            $token->setSecret(sha1(uniqid() . random_bytes(20)));
+        }
+
         $database->storeToken($token);
 
         return new Response(Response::HTTP_CREATED);

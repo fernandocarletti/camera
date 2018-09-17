@@ -21,11 +21,17 @@ class Device
      */
     protected $isOn;
 
-    public function __construct(string $id, string $name, bool $isOn)
+    /**
+     * @var Pool
+     */
+    protected $pool;
+
+    public function __construct(string $id, string $name, bool $isOn, Pool $pool = null)
     {
         $this->id = $id;
         $this->name = $name;
         $this->isOn = $isOn;
+        $this->pool = $pool;
     }
 
     public function getId(): string
@@ -52,10 +58,18 @@ class Device
     {
         if ($isOn !== null) {
             $this->isOn = $isOn;
-
-            return $isOn;
         }
 
         return $this->isOn;
+    }
+
+    public function getPool(): Pool
+    {
+        return $this->pool;
+    }
+
+    public function setPool(Pool $pool): void
+    {
+        $this->pool = $pool;
     }
 }

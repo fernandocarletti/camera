@@ -17,7 +17,7 @@ class VeSyncTest extends TestCase
 {
     public function testIsLoggingIn(): void
     {
-        $expected = new Token('123', 'iddqd');
+        $expected = new Token('123', 'iddqd', false);
 
         $mock = new MockHandler([
             new Response(200, [], json_encode([
@@ -69,7 +69,7 @@ class VeSyncTest extends TestCase
         $client = new Client(['handler' => $mock]);
         $veSync = new VeSync($client);
 
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
 
         $actual = $veSync->getDevices($token);
 
@@ -83,7 +83,7 @@ class VeSyncTest extends TestCase
         $this->expectExceptionCode(4001004);
         $this->expectExceptionMessage('TOKEN expired');
 
-        $token = new Token('123', 'iddqd');
+        $token = new Token('123', 'iddqd', false);
 
         $mock = new MockHandler([
             new Response(403, [], '{"error":{"code":4001004,"msg":"TOKEN expired"}}'),
@@ -97,7 +97,7 @@ class VeSyncTest extends TestCase
 
     public function testIsTurningOn(): void
     {
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
         $device = new Device('abc123', 'My Camera', false);
 
         $mock = new MockHandler([
@@ -118,7 +118,7 @@ class VeSyncTest extends TestCase
         $this->expectExceptionCode(4001004);
         $this->expectExceptionMessage('TOKEN过期');
 
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
         $device = new Device('abc123', 'My Camera', true);
 
         $mock = new MockHandler([
@@ -137,7 +137,7 @@ class VeSyncTest extends TestCase
         $this->expectExceptionCode(4041004);
         $this->expectExceptionMessage('device offline');
 
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
         $device = new Device('abc123', 'My Camera', true);
 
         $mock = new MockHandler([
@@ -152,7 +152,7 @@ class VeSyncTest extends TestCase
 
     public function testIsTurningOff(): void
     {
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
         $device = new Device('abc123', 'My Camera', true);
 
         $mock = new MockHandler([
@@ -173,7 +173,7 @@ class VeSyncTest extends TestCase
         $this->expectExceptionCode(4001004);
         $this->expectExceptionMessage('TOKEN过期');
 
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
         $device = new Device('abc123', 'My Camera', true);
 
         $mock = new MockHandler([
@@ -192,7 +192,7 @@ class VeSyncTest extends TestCase
         $this->expectExceptionCode(4041004);
         $this->expectExceptionMessage('device offline');
 
-        $token = new Token('foo', 'bar');
+        $token = new Token('foo', 'bar', false);
         $device = new Device('abc123', 'My Camera', true);
 
         $mock = new MockHandler([

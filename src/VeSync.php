@@ -43,11 +43,14 @@ class VeSync
         $data = Json::decode((string) $response->getBody());
         $this->handleError($response, $data);
 
-        $token = new Token($data['accountID'], $data['tk']);
+        $token = new Token($data['accountID'], $data['tk'], true);
 
         return $token;
     }
 
+    /**
+     * @return Device[]
+     */
     public function getDevices(Token $token): array
     {
         $response = $this->client->get('vold/user/devices', [
