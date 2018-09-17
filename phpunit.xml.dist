@@ -15,6 +15,11 @@
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <env name="SHELL_VERBOSITY" value="-1" />
         <!-- define your env variables for the test env here -->
+
+        <!-- ###+ ekino/newrelic-bundle ### -->
+        <!-- Get the REST API key of your NewRelic Account on https://docs.newrelic.com/docs/apis/rest-api-v2/requirements/api-keys. Using an API key is optional. -->
+        <env name="NEWRELIC_API_KEY" value="FIXME"/>
+        <!-- ###- ekino/newrelic-bundle ### -->
     </php>
 
     <testsuites>

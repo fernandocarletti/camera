@@ -1,0 +1,6 @@
+ekino_new_relic:
+    enabled: false
+    application_name: 'camera' # Remove this to use the value from php.ini
+    api_key: "%env(NEW_RELIC_LICENSE_KEY)%"
+    exceptions: true
+    deprecations: true
