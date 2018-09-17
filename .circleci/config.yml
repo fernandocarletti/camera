@@ -14,12 +14,6 @@ jobs:
           - v1-dependencies-{{ checksum "composer.json" }}
           - v1-dependencies-
 
-      # Redis extension
-      - run: test -d /tmp/phpredis || git clone git@github.com:phpredis/phpredis.git /tmp/phpredis
-      - run: cd /tmp/phpredis && git checkout 4.1.1
-      - run: cd /tmp/phpredis && phpize . && ./configure && sudo make -j 2 install
-      - run: echo extension=redis.so | sudo tee /usr/local/etc/php/conf.d/redis.ini
-
       - run: composer self-update
       - run: composer install -n --prefer-dist
 
