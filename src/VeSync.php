@@ -8,6 +8,7 @@ use App\VeSync\Device;
 use App\VeSync\Exception\VeSyncException;
 use App\VeSync\Token;
 use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Psr7\Response;
 use Linio\Component\Util\Json;
 
@@ -28,12 +29,16 @@ class VeSync
      */
     public function login(string $username, string $password): Token
     {
-        $response = $this->client->post('vold/user/login', [
-            'json' => [
-                'account' => $username,
-                'password' => md5($password),
-            ],
-        ]);
+        try {
+            $response = $this->client->post('vold/user/login', [
+                'json' => [
+                    'account' => $username,
+                    'password' => md5($password),
+                ],
+            ]);
+        } catch (ClientException $e) {
+            throw new VeSyncException('Invalid username or password.');
+        }
 
         $data = Json::decode((string) $response->getBody());
         $this->handleError($response, $data);
