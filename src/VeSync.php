@@ -38,9 +38,7 @@ class VeSync
         $data = Json::decode((string) $response->getBody());
         $this->handleError($response, $data);
 
-        $token = new Token();
-        $token->setAccountId($data['accountID']);
-        $token->setToken($data['tk']);
+        $token = new Token($data['accountID'], $data['tk']);
 
         return $token;
     }
@@ -48,7 +46,10 @@ class VeSync
     public function getDevices(Token $token): array
     {
         $response = $this->client->get('vold/user/devices', [
-            'headers' => $token->toArray(),
+            'headers' => [
+                'accountID' => $token->getAccountId(),
+                'tk' => $token->getToken(),
+            ],
         ]);
 
         $data = Json::decode((string) $response->getBody());
@@ -56,12 +57,7 @@ class VeSync
         $devices = [];
 
         foreach ($data as $rawDevice) {
-            $device = new Device();
-            $device->setId($rawDevice['cid']);
-            $device->setName($rawDevice['deviceName']);
-            $device->isOn($rawDevice['deviceStatus'] == 'on');
-
-            $devices[] = $device;
+            $devices[] = new Device($rawDevice['cid'], $rawDevice['deviceName'], $rawDevice['deviceStatus'] == 'on');
         }
 
         return $devices;
@@ -70,7 +66,10 @@ class VeSync
     public function turnOn(Token $token, Device $device): void
     {
         $response = $this->client->put(sprintf('v1/wifi-switch-1.3/%s/status/on', $device->getId()), [
-            'headers' => $token->toArray(),
+            'headers' => [
+                'accountID' => $token->getAccountId(),
+                'tk' => $token->getToken(),
+            ],
         ]);
 
         $data = Json::decode((string) $response->getBody());
@@ -80,7 +79,10 @@ class VeSync
     public function turnOff(Token $token, Device $device): void
     {
         $response = $this->client->put(sprintf('v1/wifi-switch-1.3/%s/status/off', $device->getId()), [
-            'headers' => $token->toArray(),
+            'headers' => [
+                'accountID' => $token->getAccountId(),
+                'tk' => $token->getToken(),
+            ],
         ]);
 
         $data = Json::decode((string) $response->getBody());

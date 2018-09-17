@@ -16,14 +16,21 @@ class Token
      */
     protected $token;
 
+    /**
+     * @var string
+     */
+    protected $secret;
+
+    public function __construct(string $accountId, string $token, string $secret = null)
+    {
+        $this->accountId = $accountId;
+        $this->token = $token;
+        $this->secret = $secret;
+    }
+
     public function getAccountId(): string
     {
         return $this->accountId;
-    }
-
-    public function setAccountId(string $accountId): void
-    {
-        $this->accountId = $accountId;
     }
 
     public function getToken(): string
@@ -31,16 +38,27 @@ class Token
         return $this->token;
     }
 
-    public function setToken(string $token): void
+    public function getSecret(): string
     {
-        $this->token = $token;
+        return $this->secret;
+    }
+
+    public function setSecret(string $secret): void
+    {
+        $this->secret = $secret;
     }
 
     public function toArray(): array
     {
         return [
-            'accountID' => $this->getAccountId(),
-            'tk' => $this->getToken(),
+            'accountId' => $this->getAccountId(),
+            'token' => $this->getToken(),
+            'secret' => $this->getSecret(),
         ];
+    }
+
+    public static function fromArray(array $data): Token
+    {
+        return new Token($data['accountId'], $data['token'], $data['secret']);
     }
 }

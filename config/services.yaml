@@ -28,3 +28,18 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+    Predis\Client:
+        arguments:
+            $parameters: '%env(REDIS_URL)%'
+
+    Predis\ClientInterface: '@Predis\Client'
+
+    vesync.client:
+        class: 'GuzzleHttp\Client'
+        arguments:
+            - base_uri: 'https://smartapi.vesync.com/'
+
+    App\VeSync:
+        arguments:
+            $client: '@vesync.client'

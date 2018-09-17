@@ -1,3 +1,7 @@
+admin_register:
+    path: /admin/register
+    controller: App\Controller\AdminController::register
+
 index:
     path: /
     controller: App\Controller\DefaultController::index

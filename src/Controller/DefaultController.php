@@ -4,37 +4,63 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Database;
+use App\Exception\DomainException;
 use App\VeSync;
-use GuzzleHttp\Client;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController
 {
+    const STATUS_ON = 'on';
+    const STATUS_OFF = 'off';
+
     public function index(): JsonResponse
     {
         return new JsonResponse(['version' => '0.0.1']);
     }
 
-    public function leaving(): Response
+    public function leaving(Request $request, Database $database, VeSync $veSync): Response
     {
-        $client = new Client(['base_uri' => 'https://smartapi.vesync.com/']);
-        $vesync = new VeSync($client);
-        $token = $vesync->login('contato@fernandocarletti.net', 'xetD$Rjhi9ZPPhqj');
-        $devices = $vesync->getDevices($token);
-        $vesync->turnOn($token, $devices[0]);
+        try {
+            $this->switchDevice($request, $database, $veSync, self::STATUS_ON);
+        } catch (DomainException $e) {
+            return new JsonResponse(['error' => ['message' => $e->getMessage()]]);
+        }
 
-        return new Response();
+        return new Response(Response::HTTP_NO_CONTENT);
     }
 
-    public function arriving(): Response
+    public function arriving(Request $request, Database $database, VeSync $veSync): Response
     {
-        $client = new Client(['base_uri' => 'https://smartapi.vesync.com/']);
-        $vesync = new VeSync($client);
-        $token = $vesync->login('contato@fernandocarletti.net', 'xetD$Rjhi9ZPPhqj');
-        $devices = $vesync->getDevices($token);
-        $vesync->turnOff($token, $devices[0]);
+        try {
+            $this->switchDevice($request, $database, $veSync, self::STATUS_OFF);
+        } catch (DomainException $e) {
+            return new JsonResponse(['error' => ['message' => $e->getMessage()]]);
+        }
 
-        return new Response();
+        return new Response(Response::HTTP_NO_CONTENT);
+    }
+
+    protected function switchDevice(Request $request, Database $database, VeSync $veSync, string $status): void
+    {
+        $accountId = $request->headers->get('x-account-id', null);
+        $secret = $request->headers->get('x-secret', null);
+
+        $token = $database->retrieveToken($accountId);
+        if ($secret != $token->getSecret()) {
+            throw new DomainException('Invalid credentials.');
+        }
+
+        $devices = $veSync->getDevices($token);
+
+        foreach ($devices as $device) {
+            if ($status == self::STATUS_ON) {
+                $veSync->turnOn($token, $device);
+            } else {
+                $veSync->turnOff($token, $device);
+            }
+        }
     }
 }

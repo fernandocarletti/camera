@@ -21,6 +21,13 @@ class Device
      */
     protected $isOn;
 
+    public function __construct(string $id, string $name, bool $isOn)
+    {
+        $this->id = $id;
+        $this->name = $name;
+        $this->isOn = $isOn;
+    }
+
     public function getId(): string
     {
         return $this->id;
