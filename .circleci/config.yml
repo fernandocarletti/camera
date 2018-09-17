@@ -1,0 +1,35 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/php:7.2
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "composer.json" }}
+          - v1-dependencies-
+
+      # Redis extension
+      - run: test -d /tmp/phpredis || git clone git@github.com:phpredis/phpredis.git /tmp/phpredis
+      - run: cd /tmp/phpredis && git checkout 4.1.1
+      - run: cd /tmp/phpredis && phpize . && ./configure && sudo make -j 2 install
+      - run: echo extension=redis.so | sudo tee /usr/local/etc/php/conf.d/redis.ini
+
+      - run: composer self-update
+      - run: composer install -n --prefer-dist
+
+      - save_cache:
+          paths:
+            - ./vendor
+            - ./node_modules
+            - /tmp/phpredis
+          key: v1-dependencies-{{ checksum "composer.json" }}
+
+      # run tests!
+      - run: ./vendor/bin/php-cs-fixer fix --dry-run
+      - run: ./bin/phpunit
