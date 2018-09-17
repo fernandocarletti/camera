@@ -29,7 +29,7 @@ class DefaultController
             return new JsonResponse(['error' => ['message' => $e->getMessage()]]);
         }
 
-        return new Response(Response::HTTP_NO_CONTENT);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     public function arriving(Request $request, Database $database, VeSync $veSync): Response
@@ -40,7 +40,7 @@ class DefaultController
             return new JsonResponse(['error' => ['message' => $e->getMessage()]]);
         }
 
-        return new Response(Response::HTTP_NO_CONTENT);
+        return new Response(null, Response::HTTP_NO_CONTENT);
     }
 
     protected function switchDevice(Request $request, Database $database, VeSync $veSync, string $status): void
