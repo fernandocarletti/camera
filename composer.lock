@@ -2132,16 +2132,16 @@
         },
         {
             "name": "symfony/options-resolver",
-            "version": "v4.1.12",
+            "version": "v4.3.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/options-resolver.git",
-                "reference": "71ac11db68d3d0ca8e6cf9547fb9752cdccd8f17"
+                "reference": "81c2e120522a42f623233968244baebd6b36cb6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/71ac11db68d3d0ca8e6cf9547fb9752cdccd8f17",
-                "reference": "71ac11db68d3d0ca8e6cf9547fb9752cdccd8f17",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/81c2e120522a42f623233968244baebd6b36cb6a",
+                "reference": "81c2e120522a42f623233968244baebd6b36cb6a",
                 "shasum": ""
             },
             "require": {
@@ -2150,7 +2150,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.1-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -2182,7 +2182,7 @@
                 "configuration",
                 "options"
             ],
-            "time": "2019-01-16T18:21:11+00:00"
+            "time": "2019-08-08T09:29:19+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",
