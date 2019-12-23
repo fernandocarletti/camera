@@ -16,7 +16,7 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
-        "symfony/cache-contracts": "^1.1",
+        "symfony/cache-contracts": "^2.0",
         "symfony/dotenv": "^4.2",
         "symfony/phpunit-bridge": "^4.2"
     },
