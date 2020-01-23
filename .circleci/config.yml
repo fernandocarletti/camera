@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/php:7.3
+      - image: circleci/php:7.4
 
     working_directory: ~/repo
 
@@ -26,4 +26,14 @@ jobs:
 
       # run tests!
       - run: ./vendor/bin/php-cs-fixer fix --dry-run
-      - run: ./bin/phpunit
+      - run:
+        command: |
+          mkdir -p ~/phpunit
+          ./bin/phpunit --log-junit ~/phpunit/junit.xml tests
+        when: always
+
+      - store_test_results:
+          path: ~/phpunit
+
+      - store_artifacts:
+          path: ~/phpunit
