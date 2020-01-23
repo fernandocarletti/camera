@@ -18,7 +18,7 @@
         "friendsofphp/php-cs-fixer": "^2.15",
         "symfony/cache-contracts": "^1.1",
         "symfony/dotenv": "^4.2",
-        "symfony/phpunit-bridge": "^4.2"
+        "symfony/phpunit-bridge": "^5.0"
     },
     "config": {
         "preferred-install": {
