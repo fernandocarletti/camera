@@ -5,20 +5,20 @@
         "php": "^7.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "ekino/newrelic-bundle": "^2.0",
-        "guzzlehttp/guzzle": "^6.3",
-        "linio/util": "^2.2",
+        "ekino/newrelic-bundle": "2.1.*",
+        "guzzlehttp/guzzle": "6.5.*",
+        "linio/util": "3.0.*",
         "predis/predis": "^1.1",
-        "symfony/console": "^4.2",
-        "symfony/flex": "^1.2",
-        "symfony/framework-bundle": "^4.2",
-        "symfony/yaml": "^4.2"
+        "symfony/console": "5.0.*",
+        "symfony/flex": "1.6.*",
+        "symfony/framework-bundle": "5.0.*",
+        "symfony/yaml": "5.0.*"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "symfony/cache-contracts": "^1.1",
-        "symfony/dotenv": "^4.2",
-        "symfony/phpunit-bridge": "^5.0"
+        "friendsofphp/php-cs-fixer": "2.16.*",
+        "symfony/cache-contracts": "2.0.*",
+        "symfony/dotenv": "5.0.*",
+        "symfony/phpunit-bridge": "5.0.*"
     },
     "config": {
         "preferred-install": {
@@ -62,7 +62,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "4.2.*"
+            "require": "5.0.*"
         }
     }
 }

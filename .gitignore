@@ -16,4 +16,4 @@
 /.php_cs.cache
 ###< friendsofphp/php-cs-fixer ###
 
-.idea/
+.idea/.phpunit.result.cache
