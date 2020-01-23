@@ -27,10 +27,10 @@ jobs:
       # run tests!
       - run: ./vendor/bin/php-cs-fixer fix --dry-run
       - run:
-        command: |
-          mkdir -p ~/phpunit
-          ./bin/phpunit --log-junit ~/phpunit/junit.xml tests
-        when: always
+          command: |
+            mkdir -p ~/phpunit
+            ./bin/phpunit --log-junit ~/phpunit/junit.xml tests
+          when: always
 
       - store_test_results:
           path: ~/phpunit
