@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d7487776b30b11f636bd19f56b31c330",
+    "content-hash": "db4239ae827eef466e20cedcbd0db2ae",
     "packages": [
         {
             "name": "ekino/newrelic-bundle",
@@ -266,25 +266,24 @@
         },
         {
             "name": "linio/util",
-            "version": "3.0.0",
+            "version": "2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/LinioIT/util.git",
-                "reference": "f7b31e3d165b87cb1f3ef55cbfda2e860edc4ec3"
+                "reference": "e8f96af8305dcd6ed5534c8eea90899c2f43ec67"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LinioIT/util/zipball/f7b31e3d165b87cb1f3ef55cbfda2e860edc4ec3",
-                "reference": "f7b31e3d165b87cb1f3ef55cbfda2e860edc4ec3",
+                "url": "https://api.github.com/repos/LinioIT/util/zipball/e8f96af8305dcd6ed5534c8eea90899c2f43ec67",
+                "reference": "e8f96af8305dcd6ed5534c8eea90899c2f43ec67",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.4"
+                "php": ">=7.0"
             },
             "require-dev": {
-                "friendsofphp/php-cs-fixer": "^2.16",
-                "phpstan/phpstan": "^0.12",
-                "phpunit/phpunit": "^8.5"
+                "friendsofphp/php-cs-fixer": "^2.4",
+                "phpunit/phpunit": "~5.0"
             },
             "type": "library",
             "autoload": {
@@ -301,7 +300,7 @@
                 "linio",
                 "util"
             ],
-            "time": "2020-01-02T16:27:20+00:00"
+            "time": "2018-06-05T20:07:48+00:00"
         },
         {
             "name": "predis/predis",

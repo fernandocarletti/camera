@@ -7,7 +7,7 @@
         "ext-iconv": "*",
         "ekino/newrelic-bundle": "2.1.*",
         "guzzlehttp/guzzle": "6.5.*",
-        "linio/util": "3.0.*",
+        "linio/util": "2.2.*",
         "predis/predis": "^1.1",
         "symfony/console": "5.0.*",
         "symfony/flex": "1.6.*",
