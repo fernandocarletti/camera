@@ -5,7 +5,7 @@
         "php": "^7.3",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "ekino/newrelic-bundle": "2.1.*",
+        "ekino/newrelic-bundle": "2.2.*",
         "guzzlehttp/guzzle": "6.5.*",
         "linio/util": "2.2.*",
         "predis/predis": "^1.1",
