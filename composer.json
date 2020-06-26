@@ -9,7 +9,7 @@
         "guzzlehttp/guzzle": "6.5.*",
         "linio/util": "2.2.*",
         "predis/predis": "^1.1",
-        "symfony/console": "5.0.*",
+        "symfony/console": "5.1.*",
         "symfony/flex": "1.8.*",
         "symfony/framework-bundle": "5.1.*",
         "symfony/yaml": "5.1.*"
