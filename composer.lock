@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fb541481095592691ca48b91e46b48a6",
+    "content-hash": "854a6317e48197c06123a6ad22b84f2d",
     "packages": [
         {
             "name": "ekino/newrelic-bundle",
@@ -1558,16 +1558,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.9.3",
+            "version": "v1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "1eab1e85f5eb66dac138d6240cc0ceffd6e3ae34"
+                "reference": "394f3e4dc03ea2a5448aeedc9658c8b596b1d39f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/1eab1e85f5eb66dac138d6240cc0ceffd6e3ae34",
-                "reference": "1eab1e85f5eb66dac138d6240cc0ceffd6e3ae34",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/394f3e4dc03ea2a5448aeedc9658c8b596b1d39f",
+                "reference": "394f3e4dc03ea2a5448aeedc9658c8b596b1d39f",
                 "shasum": ""
             },
             "require": {
@@ -1577,13 +1577,14 @@
             "require-dev": {
                 "composer/composer": "^1.0.2|^2.0",
                 "symfony/dotenv": "^4.4|^5.0",
+                "symfony/filesystem": "^4.4|^5.0",
                 "symfony/phpunit-bridge": "^4.4|^5.0",
                 "symfony/process": "^3.4|^4.4|^5.0"
             },
             "type": "composer-plugin",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-main": "1.9-dev"
                 },
                 "class": "Symfony\\Flex\\Flex"
             },
@@ -1617,7 +1618,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-08-31T14:36:07+00:00"
+            "time": "2021-02-02T16:29:45+00:00"
         },
         {
             "name": "symfony/framework-bundle",
